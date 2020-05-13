@@ -1,5 +1,5 @@
 {
-    "name": "gbp/greenbeanpay",
+    "name": "greenbeanpay/magento2-module",
     "description": "GreenBean Pay integration",
     "require": {
         "php": "~7.1.3||~7.2.0||~7.3.0",
