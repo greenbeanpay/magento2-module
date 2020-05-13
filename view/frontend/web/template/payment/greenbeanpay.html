@@ -1,0 +1,111 @@
+<div id="gbp-overlay">
+    <div class="gbp-overlay-hint">
+        <div class="gbp-logo"></div>
+        <div class="gbp-hint" data-bind="i18n: 'Don\'t see the secure GBP browser? We\'ll help you re-launch the window to complete your purchase.'"></div>
+        <a href="#" data-bind="i18n: 'Click to Continue', click: focusOnPopup"></a>
+    </div>
+</div>
+
+<div class="payment-method stripe" data-bind="css: {'_active': (getCode() == isChecked())}">
+    <div class="payment-method-title field choice">
+        <input type="radio"
+               name="payment[method]"
+               class="radio"
+               data-bind="attr: {'id': getCode()}, value: getCode(), checked: isChecked, click: selectPaymentMethod, visible: isRadioButtonVisible()"/>
+        <label id="gbp-payment-label" data-bind="attr: {'for': getCode()}" class="label"></label>
+    </div>
+
+    <div class="payment-method-content">
+        <!-- ko foreach: getRegion('messages') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+
+        <div class="gbp-description" data-bind="text: getDescription()"></div>
+
+        <div class="gbp-payment-method-content">
+            <p id="gbp-payment-request-input">
+                <span class="gbp-payment-text gbp-payment-title"  data-bind="i18n: 'Existing and new customers'"></span>
+                <input data-validate="{'required-entry':true}" id="gbp-account" class="field gbp-input"
+                       data-bind="attr: { placeholder: $t('Enter Cell Phone or Email') }, event: { keydown: accountFilter }"
+                       type="text" name="payment[account]"
+                />
+
+                <button id="gbp-payment-request" class="gbp-button action primary" type="button" data-bind="click: initPaymentProcess, attr: {title: $t('Submit')}" title="Submit">
+                    <span data-bind="i18n: 'Submit'"></span>
+                </button>
+            </p>
+
+            <p style="display: none;" id="gbp-code-block">
+                <span id="gbp-code-title" class="gbp-payment-text" data-bind="i18n: 'Enter code'"> </span>
+                <span id="gbp-code-instructions" class="gbp-code-text" data-bind="i18n: 'An Authorization code has been sent to your email/phone. Please enter your code below.'"></span>
+                <input data-validate="{'required-entry':true}"
+                       oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                       id="gbp-code" name="payment[code]" class="gbp-input field"
+                       type="text" maxlength="6"
+                />
+                <span id="gbp-code-resend-text" class="gbp-code-text" data-bind="i18n: 'Didn\'t receive a code?'"></span>
+                <a id="gbp-code-link" href="#" class="gbp-code-text" data-bind="click: initPaymentProcess, i18n: 'Resend Code'"></a>
+            </p>
+            <input type="hidden" id="gbp-popup-status" value="0" name="payment[status]">
+            <input type="hidden" id="gbp-payment-id" name="payment[id]" />
+            <input type="hidden" id="gbp-naf" name="payment[naf]" value="0" />
+
+            <div id="gbp-how-it-works">
+                <a id="gbp-how-it-works-link" href="#" data-bind="click: showDescription, i18n: 'How does it work?'"> </a>
+                <div id="gbp-how-it-works-content">
+                    <ul>
+                        <li data-bind="i18n: 'Create GBP account'"><span data-bind="i18n: 'Create GBP account'"></span></li>
+                        <li data-bind="i18n: 'Must have online banking'"> </li>
+                        <li data-bind="i18n: 'Enter phone # or email to receive verification code'"> </li>
+                        <li data-bind="i18n: 'Enter verification code into checkout page'"> </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="gbp-popup-success">
+            <div class="gbp-success-message">
+                <div class="gbp-icon"></div>
+                <div class="gbp-success-text" data-bind="i18n: 'Success'"></div>
+            </div>
+            <div class="gbp-confirmation-text">
+                <span data-bind="i18n: 'A GreenBean Pay account has been created and is linked to your bank.'"></span><br />
+                <span data-bind="i18n: 'You may now click Place Order.'"></span>
+            </div>
+            <div class="gbp-bottom-link">
+                <a id="gbp-link-another" href="#" data-bind="click: linkAnother, i18n: 'Use another phone number or email'"></a>
+            </div>
+        </div>
+
+        <div class="gbp-another-account">
+            <button id="gbp-add-new-ba" class="gbp-button action primary" type="button" data-bind="click: addNewBA, attr: {title: $t('Add New Bank Account')}" title="Add New Bank Account">
+                <span data-bind="i18n: 'Add New Bank Account'"></span>
+            </button>
+            <div class="gbp-bottom-link">
+                <span id="gbp-another-text" class="gbp-code-text" data-bind="i18n: 'Have another GBP account?'"></span>
+                <a id="gbp-link-another2" href="#" data-bind="click: linkAnother, i18n: 'Click here to use it.'"></a>
+            </div>
+        </div>
+
+        <div class="payment-method-billing-address">
+            <!-- ko foreach: $parent.getRegion(getBillingAddressFormName()) -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+        </div>
+        <div class="actions-toolbar">
+            <div class="primary">
+                <button class="action primary checkout"
+                        type="submit"
+                        data-bind="
+                    click: placeOrder,
+                    attr: {title: $t('Place Order')},
+                    css: {disabled: !isPlaceOrderActionAllowed()},
+                    enable: (getCode() == isChecked())
+                    "
+                        disabled>
+                    <span data-bind="i18n: 'Place Order'"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
