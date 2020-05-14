@@ -246,14 +246,15 @@
     z-index: 101;
     text-align: center;
     margin-left: -180px;
-    margin-top: -50px;
+    margin-top: -60px;
 }
 
 .gbp-overlay-hint .gbp-logo {
     display: inline-block;
-    width: 149px;
-    height: 24px;
-    background: url('../images/white-logo.png') center no-repeat;
+    width: 212px;
+    height: 68px;
+    background: url('../images/logo-white.svg') center no-repeat;
+    background-size: 100%;
     margin-bottom: 10px;
 }
 

@@ -34,7 +34,7 @@ define(
                         if ($('#gbp-popup-status').val() !== '1') {
                             if (!$('#gbp-payment-id').val()) {
                                 globalMessageList.addErrorMessage({
-                                    message: $.mage.__('Please click GreenBean Pay submit button below to continue')
+                                    message: $.mage.__('Please click GreenBeanPay submit button below to continue')
                                 });
 
                                 return false;

@@ -4,7 +4,7 @@
     <default>
         <payment>
             <greenbeanpay>
-                <title>GreenBean Pay</title>
+                <title>GreenBeanPay</title>
                 <model>Gbp\GreenBeanPay\Gateway\GreenBeanPayFacade</model>
                 <payment_action>authorize</payment_action>
                 <is_gateway>1</is_gateway>
