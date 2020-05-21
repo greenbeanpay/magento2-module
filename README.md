@@ -23,4 +23,5 @@ Deploy files into Magento2 folder `app/code/Gbp/GreenBeanPay/`
 1. Login into Magento 2 Admin Panel
 2. Go to Stores > Configuration > Sales > Payment Methods
 3. Configure the module in `Green Bean Pay` section: set Enabled field to Yes, enter merchant login and password, specify method description (optional), set sort order value (optional)
+![Module Configuration](https://edebitdirect.com/wp-content/uploads/2020/05/3.png)
 4. Click `Save Config` button at the top
