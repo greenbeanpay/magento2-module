@@ -1,8 +1,8 @@
 # Compatibility
 
-Magento 2.3
+Magento 2.3 | 2.4
 
-PHP 7.1 | 7.2
+PHP 7.1 | 7.2 | 7.3 | 7.4
 
 # Installation
 
