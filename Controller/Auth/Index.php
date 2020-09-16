@@ -159,7 +159,7 @@ class Index extends Action implements \Magento\Framework\App\Action\HttpPostActi
                 $params['customer_phone'] = '+1' . $this->getRequest()->getParam('billing_phone');
                 $params['account'] = $account;
             } else {
-                $params['customer_phone'] = $params['account'] = '+1' . $account;
+                $params['customer_phone'] = $params['account'] = strpos($account, '+1') === 0 ? $account : '+1' . $account;
                 $params['customer_email'] = $this->getRequest()->getParam('billing_email');
             }
             $result = $this->createPaymentWithData->execute($params);
