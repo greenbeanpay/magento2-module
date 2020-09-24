@@ -88,8 +88,8 @@ define(
                 $('#gbp-account').removeClass('error');
                 var value = $('#gbp-account').val(),
                     sameAddress = $('#billing-address-same-as-shipping-greenbeanpay').is(':checked'),
-                    shippingAddress = !customer.isLoggedIn() ? checkoutData.getShippingAddressFromData() : quote.shippingAddress(),
-                    billingAddress = !customer.isLoggedIn() ? checkoutData.getBillingAddressFromData() : quote.billingAddress(),
+                    shippingAddress = !customer.isLoggedIn() && checkoutData.getShippingAddressFromData() ? checkoutData.getShippingAddressFromData() : quote.shippingAddress(),
+                    billingAddress = !customer.isLoggedIn() && checkoutData.getBillingAddressFromData() ? checkoutData.getBillingAddressFromData() : quote.billingAddress(),
                     address = sameAddress ? shippingAddress : billingAddress;
 
                 if (this.isValueValid(value)) {
