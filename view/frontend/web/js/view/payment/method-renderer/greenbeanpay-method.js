@@ -108,7 +108,7 @@ define(
                             'billing_address_1': address.street[0],
                             'billing_address_2': address.street[1],
                             'billing_city': address.city,
-                            'billing_state': address.region_id,
+                            'billing_state': address.region_id ? address.region_id : address.regionId,
                             'billing_postcode': address.postcode,
                             'billing_first_name': address.firstname,
                             'billing_last_name': address.lastname,
