@@ -7,6 +7,7 @@ define(
         'Magento_Checkout/js/checkout-data',
         'Magento_Checkout/js/model/quote',
         'Magento_Customer/js/model/customer',
+        '//player.vimeo.com/api/player.js'
     ],
     function (
         $,
@@ -15,7 +16,8 @@ define(
         globalMessageList,
         checkoutData,
         quote,
-        customer
+        customer,
+        Player
     ) {
         'use strict';
 
@@ -57,6 +59,8 @@ define(
 
         var component = Component.extend({
             windowPopup: null,
+            gbpPlayer: null,
+
             defaults: {
                 template: 'Gbp_GreenBeanPay/payment/greenbeanpay'
             },
@@ -227,6 +231,33 @@ define(
 
             showDescription: function () {
                 $('#gbp-how-it-works-content').toggle();
+            },
+
+            getPlayer: function () {
+                if (!this.gbpPlayer) {
+                    var options = {
+                        id: 59777392,
+                        width: 640,
+                        loop: true
+                    };
+                    // <iframe allow="autoplay; fullscreen" allowfullscreen="" id="gbp-vimeo-player" frameborder="0" height="100%" src="https://player.vimeo.com/video/465429204" width="100%" data-ready="true"></iframe>
+                    console.log('init player');
+                    this.gbpPlayer = new Player($('#gbp-vimeo-player'));
+                }
+                return this.gbpPlayer;
+            },
+
+            playVideo: function() {
+                console.log('start video');
+                $("#gbp-videoModal").css("display", "flex");
+                this.getPlayer().setCurrentTime(0);
+                this.getPlayer().play();
+            },
+
+            stopVideo: function() {
+                console.log('stop video');
+                this.gbpPlayer.pause();
+                $("#gbp-videoModal").hide();
             },
 
             /**

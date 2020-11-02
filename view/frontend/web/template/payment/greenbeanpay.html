@@ -50,17 +50,31 @@
             <input type="hidden" id="gbp-payment-id" name="payment[id]" />
             <input type="hidden" id="gbp-naf" name="payment[naf]" value="0" />
 
-            <div id="gbp-how-it-works">
-                <a id="gbp-how-it-works-link" href="#" data-bind="click: showDescription, i18n: 'How does it work?'"> </a>
-                <div id="gbp-how-it-works-content">
-                    <ul>
-                        <li data-bind="i18n: 'Create GBP account'"><span data-bind="i18n: 'Create GBP account'"></span></li>
-                        <li data-bind="i18n: 'Must have online banking'"> </li>
-                        <li data-bind="i18n: 'Enter phone # or email to receive verification code'"> </li>
-                        <li data-bind="i18n: 'Enter verification code into checkout page'"> </li>
-                    </ul>
+            <div id="gbp-how-it-works-wrapper">
+                <div id="gbp-how-it-works">
+                    <a id="gbp-how-it-works-link" href="#" data-bind="click: showDescription, i18n: 'How does it work?'"> </a>
+                    <div id="gbp-how-it-works-content">
+                        <ul>
+                            <li data-bind="i18n: 'Create GBP account'"><span data-bind="i18n: 'Create GBP account'"></span></li>
+                            <li data-bind="i18n: 'Must have online banking'"> </li>
+                            <li data-bind="i18n: 'Enter phone # or email to receive verification code'"> </li>
+                            <li data-bind="i18n: 'Enter verification code into checkout page'"> </li>
+                        </ul>
+                    </div>
                 </div>
+                <div id="gbp-videoModal" style="display: none;">
+                    <div id="gbp-videoModal-content">
+                        <span id="gbp-closeVideo" data-bind="click: stopVideo">×</span>
+                        <div data-vimeo-id="465429204" data-vimeo-width="100%" id="gbp-vimeo-player"></div>
+                    </div>
+                </div>
+                <script src="https://player.vimeo.com/api/player.js"></script>
+                <div id="gbp-watch-our-video" data-bind="click: playVideo">
+                    <a id="gbp-vimeo-play-button"><div id="gbp-triangle-container"><span id="gbp-triangle-right"></span></div> <div data-bind="i18n: 'Watch Our Video'"></div> </a>
+                </div>
+                <div style="clear: both"></div>
             </div>
+
         </div>
 
         <div class="gbp-popup-success">
