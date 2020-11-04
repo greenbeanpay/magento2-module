@@ -289,7 +289,7 @@
 }
 
 #gbp-how-it-works {
-    width: 50%;
+    width: 40%;
     float: left;
     padding-top: 7px;
 }
@@ -381,9 +381,22 @@
     cursor: pointer;
 }
 
+@media (max-width: 340px) {
+    #gbp-how-it-works {
+        padding-top: 0;
+        width: 30%;
+    }
+}
+
 @media (max-width: 760px) {
+    #gbp-videoModal-content {
+        width: 90%;
+        min-width: 0;
+    }
+
     #gbp-videoModal-content iframe {
-        max-height: 205px;
+        width: 100%;
+	height: 71vw;
     }
 }
 @media (min-width: 761px) and (max-width: 999px) {
