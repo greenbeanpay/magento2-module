@@ -60,6 +60,7 @@ define(
         var component = Component.extend({
             windowPopup: null,
             gbpPlayer: null,
+            popupUrl: null,
 
             defaults: {
                 template: 'Gbp_GreenBeanPay/payment/greenbeanpay'
@@ -132,25 +133,8 @@ define(
                                     if (username === null) {
                                         username = 'NF';
                                     }
-                                    var url = 'https://prod.greenbeanpay.com/plugin/registration/account/' + value + '/username/' + username;
-
-                                    if ($(window).width() < 851) {
-                                       var width = $(window).width(),
-                                           height = $(window).height();
-                                       self.windowPopup = window.open(
-                                           url,
-                                           '',
-                                            'toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=' + width + ',height=' + height
-                                       );
-                                    } else {
-                                       var left = $(window).width()/2 - 425,
-                                           top = $(window).height()/2 - 275;
-                                       self.windowPopup = window.open(
-                                            url,
-                                            '',
-                                            'toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=850,height=650,left=' + left + ',top=' + top
-                                       );
-                                    }
+                                    self.popupUrl = 'https://prod.greenbeanpay.com/plugin/registration/account/' + value + '/username/' + username;
+                                    self.openPopup();
 
                                     var timer = setInterval(function() {
                                         if (self.windowPopup && self.windowPopup.closed) {
@@ -158,6 +142,7 @@ define(
                                             $('#gbp-overlay').hide();
                                             $('html body').removeClass('remove-scroll');
                                             self.windowPopup = null;
+                                            self.popupUrl = null;
                                         }
                                     }, 100);
 
@@ -199,9 +184,31 @@ define(
                 }
             },
 
+            openPopup: function () {
+                if ($(window).width() < 851) {
+                    var width = $(window).width(),
+                        height = $(window).height();
+                    this.windowPopup = window.open(
+                        this.popupUrl,
+                        '',
+                        'toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=' + width + ',height=' + height
+                    );
+                } else {
+                    var left = $(window).width() / 2 - 425,
+                        top = $(window).height() / 2 - 275;
+                    this.windowPopup = window.open(
+                        this.popupUrl,
+                        '',
+                        'toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=850,height=650,left=' + left + ',top=' + top
+                    );
+                }
+            },
+
             focusOnPopup: function () {
               if (this.windowPopup !== null && !this.windowPopup.closed) {
                   this.windowPopup.focus();
+              } else if (this.popupUrl) {
+                  this.openPopup();
               }
 
               return false;
